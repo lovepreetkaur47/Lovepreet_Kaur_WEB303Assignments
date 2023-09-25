@@ -17,12 +17,13 @@ $(document).ready(function () {
 
     // Function to load content and animate
     function loadContent(url) {
-        $('#content').fadeOut(400, function () {
-            $(this).empty(); // Clear existing content
+        var $content = $('#content');
+        $content.fadeOut(400, function () {
+            $content.empty(); // Clear existing content
 
             // Load new content using .load() method
-            $(this).load(url, function () {
-                $(this).fadeIn(400); // Display the new content with fade-in animation
+            $content.load(url, function () {
+                $content.fadeIn(400); // Display the new content with fade-in animation
             });
         });
     }
