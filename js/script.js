@@ -1,44 +1,51 @@
-// Define your two methods for JSON and AJAX requests
-function getTeamInfoWithJSON() {
-  $.getJSON('team.json', function (data) {
-    displayTeamInfo(data.team);
+
+// Method for $.getjson request
+function getDataWithGetJSON() {
+  $.getJSON("team.json", function(data) {
+    $.each(data, function(index, item) {
+      var name = item.name;
+      var position = item.position;
+      var bio = item.bio;
+
+      var teamDiv = $("<div>").appendTo("#team");
+      $("<h2>").text(name).appendTo(teamDiv);
+      $("<h5>").text(position).appendTo(teamDiv);
+      $("<p>").text(bio).appendTo(teamDiv);
+    });
   });
 }
 
-function getTeamInfoWithAjax() {
-  $('#team').text('Loading...');
+// Method for $.ajax request
+function getDataWithAjax() {
+  $("#team").text("Loading...");
 
   $.ajax({
-    type: 'GET',
-    url: 'team.json',
-    dataType: 'json',
-    success: function (data) {
-      displayTeamInfo(data.team);
+    url: "team.json",
+    type: "GET",
+    dataType: "json",
+    beforeSend: function() {
+      $("#team").text("Loading...");
     },
-    error: function () {
-      $('#team').html('<p>Error: Content could not be retrieved.</p>');
+    success: function(data) {
+      $("#team").empty();
+      $.each(data, function(index, item) {
+        var name = item.name;
+        var position = item.position;
+        var bio = item.bio;
+
+        var teamDiv = $("<div>").appendTo("#team");
+        $("<h2>").text(name).appendTo(teamDiv);
+        $("<h5>").text(position).appendTo(teamDiv);
+        $("<p>").text(bio).appendTo(teamDiv);
+      });
     },
+    error: function() {
+      $("#team").text("Error retrieving content.");
+    }
   });
 }
 
-function displayTeamInfo(teamMembers) {
-  // Clear existing content in the #team div
-  $('#team').empty();
-
-  // Loop through the team members and display their information
-  $.each(teamMembers, function (index, member) {
-    var memberInfo = `
-      <h2>${member.name}</h2>
-      <h5>${member.position}</h5>
-      <p>${member.bio}</p>
-    `;
-
-    $('#team').append(memberInfo);
-  });
-}
-
-// Call one of the methods in a ready function
-$(document).ready(function () {
-  // Choose either getTeamInfoWithJSON() or getTeamInfoWithAjax() to call
-  getTeamInfoWithAjax(); // Change to the method you want to test
+$(document).ready(function() {
+  getDataWithAjax(); // or getDataWithGetJSON();
 });
+
