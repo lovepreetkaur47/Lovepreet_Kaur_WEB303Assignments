@@ -1,61 +1,60 @@
-// Method for fetching data using $.getJSON
+// Define a function to fetch data using $.getJSON
 function fetchDataWithGetJSON() {
   $.getJSON('team.json', function(data) {
-    // Loop through the data array and display it
-    $.each(data, function(index, member) {
-      // Create HTML elements for each team member
-      var memberDiv = $('<div>');
-      var nameHeader = $('<h2>').text(member.name);
-      var positionHeader = $('<h5>').text(member.position);
-      var bioParagraph = $('<p>').text(member.bio);
+    // Clear the content of the div#team
+    $('#team').empty();
 
-      // Append the elements to the team div
-      memberDiv.append(nameHeader, positionHeader, bioParagraph);
-      $('#team').append(memberDiv);
+    // Loop through the array of team members
+    $.each(data, function(index, member) {
+      // Create HTML elements for name, position, and bio
+      var nameElement = $('<h2>').text(member.name);
+      var positionElement = $('<h5>').text(member.position);
+      var bioElement = $('<p>').text(member.bio);
+
+      // Append the elements to the div#team
+      $('#team').append(nameElement, positionElement, bioElement);
     });
   });
-} 
-
-// Method for fetching data using $.ajax
-function fetchDataWithAjax() {
-  // Display "Loading..." message
-  $('#team').text('Loading...');
-
-  // Add a 3-second delay before making the AJAX request
-  setTimeout(function() {
-    $.ajax({
-      type: 'GET',
-      url: 'team.json',
-      dataType: 'json',
-      success: function(data) {
-        // Remove "Loading..." message
-        $('#team').empty();
-
-        // Loop through the data array and display it
-        $.each(data, function(index, member) {
-          // Create HTML elements for each team member
-          var memberDiv = $('<div>');
-          var nameHeader = $('<h2>').text(member.name);
-          var positionHeader = $('<h5>').text(member.position);
-          var bioParagraph = $('<p>').text(member.bio);
-
-          // Append the elements to the team div
-          memberDiv.append(nameHeader, positionHeader, bioParagraph);
-          $('#team').append(memberDiv);
-        });
-      },
-      error: function() {
-        // Display error message if AJAX request fails
-        $('#team').text('Error: Content could not be retrieved.');
-      }
-    });
-  }, 3000); // 3-second delay (3000 milliseconds)
 }
 
+// Define a function to fetch data using $.ajax
+function fetchDataWithAjax() {
+  // Display "Loading..." message before sending the request
+  $('#team').text('Loading...');
 
+  $.ajax({
+    type: 'GET',
+    url: 'team.json',
+    dataType: 'json',
+    success: function(data) {
+      // Clear the content of the div#team
+      $('#team').empty();
+
+      // Loop through the array of team members
+      $.each(data, function(index, member) {
+        // Create HTML elements for name, position, and bio
+        var nameElement = $('<h2>').text(member.name);
+        var positionElement = $('<h5>').text(member.position);
+        var bioElement = $('<p>').text(member.bio);
+
+        // Append the elements to the div#team
+        $('#team').append(nameElement, positionElement, bioElement);
+      });
+    },
+    error: function() {
+      // Display an error message if the request fails
+      $('#team').text('Error: Content could not be retrieved');
+    },
+    complete: function() {
+      // Use setTimeout to delay content display by 3 seconds (bonus)
+      setTimeout(function() {
+        $('#team').text(''); // Clear the loading message after delay
+      }, 3000);
+    }
+  });
+}
+
+// Call one of the methods in a ready function
 $(document).ready(function() {
-  // Call one of the methods to fetch and display data
-  //fetchDataWithGetJSON(); // Uncomment this line to use $.getJSON method
-  // OR
-  fetchDataWithAjax(); // Uncomment this line to use $.ajax method  
+  fetchDataWithGetJSON(); // You can also call fetchDataWithAjax() here to test the other method
 });
