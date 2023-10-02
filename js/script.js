@@ -56,5 +56,9 @@ function fetchDataWithAjax() {
 
 // Call one of the methods in a ready function
 $(document).ready(function() {
-  fetchDataWithGetJSON(); // You can also call fetchDataWithAjax() here to test the other method
+  
+  //fetchDataWithGetJSON(); // Uncomment this line to use $.getJSON method
+  // OR
+  fetchDataWithAjax(); // Uncomment this line to use $.ajax method  
+
 });
