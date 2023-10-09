@@ -1,6 +1,6 @@
 /*
     Assignment #4
-    {Your name here}
+    {Lovepreet Kaur}
 */
 
 $(function () {
