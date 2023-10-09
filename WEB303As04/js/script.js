@@ -5,10 +5,71 @@
 
 $(function () {
     // your code here
+    // Check if geolocation is available and has been allowed by the user
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
 
+            // Display the current location
+            var locationHere = document.getElementById("locationhere");
+            locationHere.innerHTML = `Your Current Location: Latitude ${latitude}, Longitude ${longitude}`;
 
+            // Check if there's a location value in local storage
+            var storedLocation = localStorage.getItem("lastLocation");
 
+            if (storedLocation) {
+                // Parse the stored location string to an object
+                var storedLocationObj = JSON.parse(storedLocation);
 
+                // Calculate the distance between current and stored location
+                var distance = calcDistanceBetweenPoints(
+                    latitude,
+                    longitude,
+                    storedLocationObj.latitude,
+                    storedLocationObj.longitude
+                ).toFixed(2);
+
+                // Display a welcome message and the distance traveled
+                var welcomeMessage = document.createElement("h2");
+                welcomeMessage.innerHTML = "Welcome back!";
+                var traveledMessage = document.createElement("p");
+                traveledMessage.innerHTML = `You traveled ${distance} km since your last visit.`;
+
+                // Display accuracy information
+                var accuracyMessage = document.createElement("p");
+                accuracyMessage.innerHTML = `Accuracy: ${position.coords.accuracy.toFixed(2)} meters`;
+
+                // Append messages to the content section
+                var content = document.getElementById("content");
+                content.appendChild(welcomeMessage);
+                content.appendChild(traveledMessage);
+                content.appendChild(accuracyMessage);
+            } else {
+                // Display a welcome message for first-time visitors
+                var welcomeMessage = document.createElement("h2");
+                welcomeMessage.innerHTML = "Welcome to the page for the first time!";
+                content.appendChild(welcomeMessage);
+            }
+
+            // Store the current location in local storage
+            var currentLocation = {
+                latitude: latitude,
+                longitude: longitude
+            };
+            localStorage.setItem("lastLocation", JSON.stringify(currentLocation));
+        }, function (error) {
+            // Handle geolocation error here
+            var errorMessage = "Error: Geolocation is blocked. Please enable it to use the application.";
+            var locationHere = document.getElementById("locationhere");
+            locationHere.innerHTML = errorMessage;
+        });
+    } else {
+        // Handle the case where geolocation is not supported by the browser
+        var errorMessage = "Error: Geolocation is not supported by your browser.";
+        var locationHere = document.getElementById("locationhere");
+        locationHere.innerHTML = errorMessage;
+    }
 
     // DO NOT EDIT ANY CODE IN THIS FUNCTION DEFINTION
     // function to calculate the distance in metres between two lat/long pairs on Earth
@@ -31,72 +92,4 @@ $(function () {
     }
     
     
-        // Check if geolocation is available and has been allowed by the user
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-    
-                // Display the current location
-                var locationHere = document.getElementById("locationhere");
-                locationHere.innerHTML = `Your Current Location: Latitude ${latitude}, Longitude ${longitude}`;
-    
-                // Check if there's a location value in local storage
-                var storedLocation = localStorage.getItem("lastLocation");
-    
-                if (storedLocation) {
-                    // Parse the stored location string to an object
-                    var storedLocationObj = JSON.parse(storedLocation);
-    
-                    // Calculate the distance between current and stored location
-                    var distance = calcDistanceBetweenPoints(
-                        latitude,
-                        longitude,
-                        storedLocationObj.latitude,
-                        storedLocationObj.longitude
-                    ).toFixed(2);
-    
-                    // Display a welcome message and the distance traveled
-                    var welcomeMessage = document.createElement("h2");
-                    welcomeMessage.innerHTML = "Welcome back!";
-                    var traveledMessage = document.createElement("p");
-                    traveledMessage.innerHTML = `You traveled ${distance} km since your last visit.`;
-    
-                    // Display accuracy information
-                    var accuracyMessage = document.createElement("p");
-                    accuracyMessage.innerHTML = `Accuracy: ${position.coords.accuracy.toFixed(2)} meters`;
-    
-                    // Append messages to the content section
-                    var content = document.getElementById("content");
-                    content.appendChild(welcomeMessage);
-                    content.appendChild(traveledMessage);
-                    content.appendChild(accuracyMessage);
-                } else {
-                    // Display a welcome message for first-time visitors
-                    var welcomeMessage = document.createElement("h2");
-                    welcomeMessage.innerHTML = "Welcome to the page for the first time!";
-                    content.appendChild(welcomeMessage);
-                }
-    
-                // Store the current location in local storage
-                var currentLocation = {
-                    latitude: latitude,
-                    longitude: longitude
-                };
-                localStorage.setItem("lastLocation", JSON.stringify(currentLocation));
-            }, function (error) {
-                // Handle geolocation error here
-                var errorMessage = "Error: Geolocation is blocked. Please enable it to use the application.";
-                var locationHere = document.getElementById("locationhere");
-                locationHere.innerHTML = errorMessage;
-            });
-        } else {
-            // Handle the case where geolocation is not supported by the browser
-            var errorMessage = "Error: Geolocation is not supported by your browser.";
-            var locationHere = document.getElementById("locationhere");
-            locationHere.innerHTML = errorMessage;
-        }
 });
-    
-
-
