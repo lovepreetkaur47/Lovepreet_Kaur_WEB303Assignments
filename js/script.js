@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // Accordion functionality
     $('.accordion h3').click(function() {
-        // Hide all accordion panels
-        $('.accordion-panel').slideUp();
+        // Hide all accordion panels within the same accordion
+        $(this).parent().find('.accordion-panel').slideUp();
         // Show the panel associated with the clicked label
         $(this).next('.accordion-panel').slideDown();
     });
