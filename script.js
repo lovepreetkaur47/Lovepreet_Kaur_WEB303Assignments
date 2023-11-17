@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var characters;
+    var characters = [];
 
     // Load data from JSON file using jQuery ajax
     $.ajax({
@@ -10,11 +10,11 @@ $(document).ready(function () {
             populateTable(characters);
 
             // Set up click event for table headings
-            $('th[data-sort]').click(function (e) {
+            /*('th[data-sort]').click(function (e) {
                 e.preventDefault();
                 var column = $(this).data('sort');
                 sortTable(column);
-            });
+            });*/
             
         },
         error: function (error) {
