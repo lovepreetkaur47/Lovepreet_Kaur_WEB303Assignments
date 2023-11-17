@@ -1,33 +1,16 @@
-$(document).ready(function () {
-    var characters = [];
+$(document).ready(function() {
+    // Your JSON data
+    var characters = [
+        // Your character data here...
+    ];
 
-    // Load data from JSON file using jQuery ajax
-    $.ajax({
-        url: 'characters.json', // Replace with your JSON file path
-        dataType: 'json',
-        success: function (data) {
-            characters = data;
-            populateTable(characters);
-
-            // Set up click event for table headings
-            /*('th[data-sort]').click(function (e) {
-                e.preventDefault();
-                var column = $(this).data('sort');
-                sortTable(column);
-            });*/
-            
-        },
-        error: function (error) {
-            console.error('Error loading JSON data: ' + error.statusText);
-        }
-    });
-
-    // Function to populate the table with data
-    function populateTable(data) {
+    // Function to render the table rows
+    function renderTable() {
         var tbody = $('#characterBody');
-        tbody.empty();
+        tbody.empty(); // Clear existing rows
 
-        $.each(data, function (index, character) {
+        // Loop through characters and append rows to the table
+        characters.forEach(function(character) {
             var row = $('<tr>');
             row.append('<td>' + character.first_name + '</td>');
             row.append('<td>' + character.last_name + '</td>');
@@ -35,35 +18,22 @@ $(document).ready(function () {
             row.append('<td>' + character.age + '</td>');
             row.append('<td>' + character.from + '</td>');
             row.append('<td>' + character.profession + '</td>');
+
             tbody.append(row);
         });
     }
 
-    // Function to sort the table based on a column
-    // Function to sort the table based on a column
-function sortTable(column) {
-    characters.sort(function (a, b) {
-        var aValue = a[column];
-        var bValue = b[column];
+    // Initial rendering of the table
+    renderTable();
 
-        if (typeof aValue === 'string') {
-            // Convert date strings to comparable format
-            aValue = new Date(aValue);
-            bValue = new Date(bValue);
-        }
+    // Event handler for sorting table on header click
+    $('th a').on('click', function() {
+        var column = $(this).data('sort');
+        characters.sort(function(a, b) {
+            // Assuming all fields are strings, adjust comparison as needed
+            return a[column].localeCompare(b[column]);
+        });
 
-        return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
+        renderTable();
     });
-
-    // Remove 'sorted' class from all columns
-    $('th[data-sort]').removeClass('sorted');
-
-    // Toggle the 'sorted' class for the clicked column
-    $(`th[data-sort="${column}"]`).toggleClass('sorted');
-
-    populateTable(characters);
-}
-
-    
-    
 });
