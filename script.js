@@ -39,16 +39,16 @@ $(document).ready(function() {
       
           // Iterate through each character in the JSON data
           $.each(data, function(index, character) {
-            // Create a table row and append it to the rows array
             var $row = $('<tr>');
-            $row.append('<td>' + character.first_name + '</td>');
-            $row.append('<td>' + character.last_name + '</td>');
-            $row.append('<td>' + character.birth_date + '</td>');
-            $row.append('<td>' + character.age + '</td>');
-            $row.append('<td>' + character.from + '</td>');
-            $row.append('<td>' + character.profession + '</td>');
+            $row.append('<td data-key="first_name">' + character.first_name + '</td>');
+            $row.append('<td data-key="last_name">' + character.last_name + '</td>');
+            $row.append('<td data-key="birth_date">' + character.birth_date + '</td>');
+            $row.append('<td data-key="age">' + character.age + '</td>');
+            $row.append('<td data-key="from">' + character.from + '</td>');
+            $row.append('<td data-key="profession">' + character.profession + '</td>');
             $rows.push($row);
           });
+          
       
           // Append the rows to the table body
           $tableBody.append($rows);

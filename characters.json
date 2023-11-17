@@ -4,7 +4,7 @@
         "last_name": "Dhillon",
         "birth_date": "1960-11-14",
         "from": "Moga",
-        "age" : "correts",        
+        "age" : "30",        
         "profession": "Actor"
     },
 
@@ -13,7 +13,7 @@
         "last_name": "Bhani", 
         "birth_date": "1965-11-02",
         "from": "Sultanpur" ,
-        "age" : "correts",        
+        "age" : "25",        
 
         "profession": "Editor"
     },
@@ -22,7 +22,7 @@
         "last_name": "Singh", 
         "birth_date": "1962-11-01",
         "from": "Tarn taran",
-        "age" : "correts",        
+        "age" : "40",        
 
         "profession": "Punjabi Singer"
     },
@@ -31,7 +31,7 @@
         "last_name": "Dosanjh", 
         "birth_date": "1980-11-07",
         "from": "Pathankot",
-        "age" : "correts",        
+        "age" : "40",        
 
         "profession": "Actor"
     },
@@ -40,7 +40,7 @@
         "last_name": "Khaira", 
         "birth_date": "1970-11-10",
         "from": "Mumbai",
-        "age" : "correts",        
+        "age" : "60",        
 
         "profession":"Writer"
     },
@@ -49,14 +49,14 @@
         "last_name": "Aujla", 
         "birth_date": "1967-11-15",
         "from" : "Dubai",
-        "age" : "correts",        
+        "age" : "80",        
 
         "profession":"Actor"
     },
     { 
         "first_name": "Arjun", 
         "last_name": "Dhillon", 
-        "age" : "correts",        
+        "age" : "50",        
         "birth_date": "1955-11-09", 
         "from": "Canada",
         "profession":"Singer"
