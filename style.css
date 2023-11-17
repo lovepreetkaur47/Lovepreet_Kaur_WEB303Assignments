@@ -1,0 +1,53 @@
+/* Style for the table */
+#characterTable {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+#characterTable th, #characterTable td {
+    padding: 10px;
+    text-align: left;
+}
+
+#characterTable th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+body{
+    background-color: bisque;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#characterBody {
+    background-color: burlywood;
+}
+#characterTable th a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+}
+
+/* Style for sorting chevron icons */
+#characterTable th a[data-col]:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+#characterTable th a[data-col].ascending:after {
+    content: '\25B2'; 
+}
+
+#characterTable th a[data-col].descending:after {
+    content: '\25BC'; 
+}

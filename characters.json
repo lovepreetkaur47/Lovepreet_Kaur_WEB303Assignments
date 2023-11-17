@@ -1,0 +1,64 @@
+[
+    { 
+        "first_name": "Dilpreet", 
+        "last_name": "Dhillon",
+        "birth_date": "1960-11-14",
+        "from": "Moga",
+        "age" : "correts",        
+        "profession": "Actor"
+    },
+
+    { 
+        "first_name": "Khan",
+        "last_name": "Bhani", 
+        "birth_date": "1965-11-02",
+        "from": "Sultanpur" ,
+        "age" : "correts",        
+
+        "profession": "Editor"
+    },
+    { 
+        "first_name": "Hustinder", 
+        "last_name": "Singh", 
+        "birth_date": "1962-11-01",
+        "from": "Tarn taran",
+        "age" : "correts",        
+
+        "profession": "Punjabi Singer"
+    },
+    { 
+        "first_name": "Daljeet", 
+        "last_name": "Dosanjh", 
+        "birth_date": "1980-11-07",
+        "from": "Pathankot",
+        "age" : "correts",        
+
+        "profession": "Actor"
+    },
+    { 
+        "first_name": "Nimrat", 
+        "last_name": "Khaira", 
+        "birth_date": "1970-11-10",
+        "from": "Mumbai",
+        "age" : "correts",        
+
+        "profession":"Writer"
+    },
+    { 
+        "first_name": "Karan", 
+        "last_name": "Aujla", 
+        "birth_date": "1967-11-15",
+        "from" : "Dubai",
+        "age" : "correts",        
+
+        "profession":"Actor"
+    },
+    { 
+        "first_name": "Arjun", 
+        "last_name": "Dhillon", 
+        "age" : "correts",        
+        "birth_date": "1955-11-09", 
+        "from": "Canada",
+        "profession":"Singer"
+    }
+]
